@@ -24,25 +24,26 @@ void app_main(void)
     printf("BSP Version %d\n", BSP_GetVersion());
 
     I2C_init();
-    I2C_scan();
-
     ESP_LOGI(TAG, "IIC initialised successfully");
+    I2C_scan();
+    
     BSP_LED_Init(LED_PIN);
     BSP_BME280_Init();
     BSP_SGP40_Init();
     
-    mqtt_app_start();
+    //mqtt_app_start();
     
     for(;;){
         BSP_LED_Write(LED_PIN, LED_FLAG);
-        if (TEM_FLAG) BSP_BME280_Get_Temperature(&temperature);
-        if (PRE_FLAG) BSP_BME280_Get_Pressure(&pressure);
-        if (HUM_FLAG) BSP_BME280_Get_Humidity(&humidity);
-        if (COV_FLAG) BSP_SGP40_Get_Raw((uint16_t) temperature, (uint16_t) humidity, &tvoc);
+        if (1) BSP_BME280_Get_Temperature(&temperature);
+        if (1) BSP_BME280_Get_Pressure(&pressure);
+        if (1) BSP_BME280_Get_Humidity(&humidity);
+        if (1) BSP_SGP40_Get_Raw((uint16_t) 27, (uint16_t) 50, &tvoc);
         printf("Temperatura: %.2f\n", temperature);
         printf("Presión: %.2f\n", pressure);
         printf("Humedad: %.2f\n", humidity);
         printf("COVs: %d\n", tvoc);
+        
         
         if (MQTT_CONNECTED){
             if (TEM_FLAG) mqtt_publish("Temperatura", &temperature, TYPE_DOUBLE);
@@ -50,6 +51,7 @@ void app_main(void)
             if (HUM_FLAG) mqtt_publish("Humedad", &humidity, TYPE_DOUBLE);
             if (COV_FLAG) mqtt_publish("COVs", &tvoc, TYPE_UINT16); 
         }
+        
         vTaskDelay(1000/portTICK_PERIOD_MS);
     }
 

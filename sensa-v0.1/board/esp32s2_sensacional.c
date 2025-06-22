@@ -108,7 +108,8 @@ void I2C_init(void)
         .scl_io_num = I2C_MASTER_SCL_IO,
         .clk_source = I2C_CLK_SRC_DEFAULT,
         .glitch_ignore_cnt = 7,
-        .flags.enable_internal_pullup = false, //Lo cambio porque he metido pullups externos ya.
+        .flags.enable_internal_pullup = false,
+         //Lo cambio porque he metido pullups externos ya.
     };
     ESP_ERROR_CHECK(i2c_new_master_bus(&bus_config, &I2C_handle));
 }

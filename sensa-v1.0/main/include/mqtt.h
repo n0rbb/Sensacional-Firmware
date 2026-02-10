@@ -5,14 +5,15 @@
 extern "C" {
 #endif
 
-#define BROKER_URL "mqtt://192.168.0.103" //IMA goes 192.168.226.102
+#define BROKER_URL "mqtt://192.168.0.102" //IMA goes 192.168.226.102
 #define BROKER_PORT 1885
 #define MAX_N_CHARS 100
-#define SENSOR_ID "sen2"
+#define SENSOR_ID "sen0"
 
 typedef enum {
     TYPE_DOUBLE,
     TYPE_UINT16,
+    TYPE_INT,
     TYPE_LOG
 } data_type_t;
 

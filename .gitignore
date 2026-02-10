@@ -1,11 +1,12 @@
 # Ignore build and output directories
-sensa-v0.1/build/
+sensa-v1.0/build/
+sensa-v1.0/unity-app/
 /out/
 /dist/
 
 # Ignore temporary or IDE-specific directories
-sensa-v0.1/.vscode/
-sensa-v0.1/.devcontainer/
+sensa-v1.0/.vscode/
+sensa-v1.0/.devcontainer/
 /.idea/
 /*.swp
 

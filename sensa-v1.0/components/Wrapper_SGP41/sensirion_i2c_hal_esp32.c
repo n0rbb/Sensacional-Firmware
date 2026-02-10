@@ -42,7 +42,7 @@
 #include "rom/ets_sys.h"
 #include "esp_err.h"
 
-i2c_master_dev_handle_t sgp40_handle; //Lo declaro aquí y paso como externo en BSP.
+i2c_master_dev_handle_t sgp41_handle; //Lo declaro aquí y paso como externo en BSP.
 
 /**
  * Execute one read transaction on the I2C bus, reading a given number of bytes.
@@ -56,7 +56,7 @@ i2c_master_dev_handle_t sgp40_handle; //Lo declaro aquí y paso como externo en 
  */
 int8_t sensirion_i2c_hal_read(uint8_t address, uint8_t* data, uint16_t count) {
     esp_err_t rslt;
-    rslt = i2c_master_receive(sgp40_handle, data, (size_t) count, 1000 / portTICK_PERIOD_MS);
+    rslt = i2c_master_receive(sgp41_handle, data, (size_t) count, 1000 / portTICK_PERIOD_MS);
     return (int8_t) rslt;   
 }
 
@@ -73,7 +73,7 @@ int8_t sensirion_i2c_hal_read(uint8_t address, uint8_t* data, uint16_t count) {
  */
 int8_t sensirion_i2c_hal_write(uint8_t address, const uint8_t* data, uint16_t count) {
     esp_err_t rslt;
-    rslt = i2c_master_transmit(sgp40_handle, data, (size_t) count, 1000 / portTICK_PERIOD_MS);
+    rslt = i2c_master_transmit(sgp41_handle, data, (size_t) count, 1000 / portTICK_PERIOD_MS);
     return (int8_t) rslt;
 }
 

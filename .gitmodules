@@ -1,6 +1,6 @@
-[submodule "sensa-v0.1/components/Sensor_BME280"]
-	path = sensa-v0.1/components/Sensor_BME280
+[submodule "sensa-v1.0/components/Sensor_BME280"]
+	path = sensa-v1.0/components/Sensor_BME280
 	url = https://github.com/boschsensortec/BME280_SensorAPI
-[submodule "sensa-v0.1/components/Sensor_SGP40"]
-	path = sensa-v0.1/components/Sensor_SGP40
-	url = https://github.com/Sensirion/embedded-i2c-sgp40
+[submodule "sensa-v1.0/components/Sensor_SGP41"]
+	path = sensa-v1.0/components/Sensor_SGP41
+	url = https://github.com/Sensirion/embedded-i2c-sgp41

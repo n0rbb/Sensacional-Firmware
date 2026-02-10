@@ -23,7 +23,12 @@ typedef enum{
     TEM,
     PRE,
     HUM,
-    COV
+    COV,
+    RES, 
+    SOE,
+    NO2,
+    CO,
+    NH3, 
 } command_type_t;
 
 
@@ -33,17 +38,22 @@ typedef struct {
 } command_str_t; 
 
 //command flags
-uint8_t LED_FLAG, TEM_FLAG, PRE_FLAG, HUM_FLAG, COV_FLAG;
+uint8_t LED_FLAG, TEM_FLAG, PRE_FLAG, HUM_FLAG, COV_FLAG, RES_FLAG, SOE_FLAG, NO2_FLAG, CO_FLAG, NH3_FLAG; //añadir mics
 
 command_str_t command_parser[] = {
     {NOP, "N"},
-    {LED, "L"},
+    //{LED, "L"},
     //{LON, "LON"},
     //{LOFF, "LOFF"},
     {TEM, "TEM"},
     {PRE, "PRE"},
     {HUM, "HUM"},
-    {COV, "COV"}
+    {COV, "COV"},
+    {RES, "RES"}, 
+    {SOE, "SOE"},
+    {NO2, "NO2"}, 
+    {CO,  "CO"},
+    {NH3, "NH3"},
     
 };
 
@@ -69,7 +79,7 @@ static void mqtt_command_handler(const char* cmd_char){
     }
     switch (cmd){
         case NOP:
-            printf("Hola mundo\r\n");
+            //printf("Hola mundo\r\n");
             ESP_LOGE(TAG_MQTT, "Unknown command");
             mqtt_publish("LOG", "Comando no reconocido", TYPE_LOG);
             break;
@@ -130,6 +140,56 @@ static void mqtt_command_handler(const char* cmd_char){
             }
             else{
                 mqtt_publish("LOG", "Medida de COV parada", TYPE_LOG);
+            }
+            break;
+
+        case RES:
+            RES_FLAG = ~RES_FLAG;
+            if (RES_FLAG){
+                mqtt_publish("LOG", "Medida de sensor resistivo iniciada", TYPE_LOG);
+            }
+            else{
+                mqtt_publish("LOG", "Medida de sensor resistivo parada", TYPE_LOG);
+            }
+            break;
+        
+        case SOE:
+            SOE_FLAG = ~SOE_FLAG;
+            if (SOE_FLAG){
+                mqtt_publish("LOG", "Medida de sensor de ondas de espín iniciada", TYPE_LOG);
+            }
+            else{
+                mqtt_publish("LOG", "Medida de sensor de ondas de espín parada", TYPE_LOG);
+            }
+            break;
+
+        case NO2:
+            NO2_FLAG = ~NO2_FLAG;
+            if (NO2_FLAG){
+                mqtt_publish("LOG", "Medida de sensor MICS de NO2 iniciada", TYPE_LOG);
+            }
+            else{
+                mqtt_publish("LOG", "Medida de sensor MICS de NO2 parada", TYPE_LOG);
+            }
+            break;
+        
+        case CO:
+            CO_FLAG = ~CO_FLAG;
+            if (CO_FLAG){
+                mqtt_publish("LOG", "Medida de sensor MICS de CO iniciada", TYPE_LOG);
+            }
+            else{
+                mqtt_publish("LOG", "Medida de sensor MICS de CO parada", TYPE_LOG);
+            }
+            break;
+
+        case NH3:
+            NH3_FLAG = ~NH3_FLAG;
+            if (NH3_FLAG){
+                mqtt_publish("LOG", "Medida de sensor MICS de NH3 iniciada", TYPE_LOG);
+            }
+            else{
+                mqtt_publish("LOG", "Medida de sensor MICS de NH3 espín parada", TYPE_LOG);
             }
             break;
 
@@ -285,6 +345,9 @@ void mqtt_publish(char *quantity, void *value_ptr, data_type_t type)
             break;
         case TYPE_UINT16:
             sprintf(payload, "%d", *(uint16_t *)value_ptr);
+            break;
+        case TYPE_INT:
+            sprintf(payload, "%d", *(int *)value_ptr);
             break;
         case TYPE_LOG:
             sprintf(payload, "%s", (char *)value_ptr);

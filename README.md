@@ -3,6 +3,8 @@ Este repositorio contiene el código cargado en Sensacional 2 para las pruebas d
 integrados en Sensacional 2 además de un programa de prueba. 
 
 MCU: ESP32 (ESP32 WROOM SoC)
+
+
 Sensores soportados:
   * BME280 
   * SGP41 

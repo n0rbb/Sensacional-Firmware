@@ -57,3 +57,17 @@ La BSP abstrae el hardware de la PCB y proporciona una interfaz para:
 
 Este repositorio está pensado como **punto de partida** para desarrollo y validación de plataformas de la familia SENSACIONAL. No pretende ser un framework completo, sino una base sólida y comprensible.
 
+## Licencia
+Copyright (C) 2026 Mario de Miguel
+
+Este programa es software libre: puedes redistribuirlo y/o modificarlo
+bajo los términos de la Licencia Pública General GNU (GPL) tal como
+la publica la Free Software Foundation, versión 3 de la licencia.
+
+Este programa se distribuye con la esperanza de que sea útil,
+pero SIN NINGUNA GARANTÍA; incluso sin la garantía implícita de
+COMERCIABILIDAD o IDONEIDAD PARA UN PROPÓSITO PARTICULAR.  
+Consulta la Licencia Pública General GNU para más detalles.
+
+Para obtener una copia de la licencia, visita:
+https://www.gnu.org/licenses/gpl-3.0.html
